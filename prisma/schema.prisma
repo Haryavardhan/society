@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  MEMBER
+  VOLUNTEER
+  ADMIN
+}
+
+enum SevaStatus {
+  PLANNED
+  INITIATED
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          Role      @default(USER)
+  passwordResetRequest Boolean @default(false)
+  resetToken        String?
+  resetTokenExpiry  DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sevasAssigned Seva[]
+  tasks         Task[]
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  isCompleted Boolean  @default(false)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Program {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  date        DateTime
+  isPublic    Boolean  @default(true)
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Seva {
+  id              String     @id @default(cuid())
+  title           String
+  description     String
+  status          SevaStatus @default(PLANNED)
+  date            DateTime?
+  volunteerId     String?
+  videoUrl        String?
+  membersEngaged  Int        @default(0)
+  fundsSpent      Int        @default(0)
+  engagedUsers    String[]   @default([])
+  volunteer       User?      @relation(fields: [volunteerId], references: [id])
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}

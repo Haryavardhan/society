@@ -1,66 +1,71 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import { Users, HeartHandshake, CalendarClock, ArrowRight } from 'lucide-react';
+import styles from './page.module.css';
+import FoundingMembersMarquee from '@/components/FoundingMembersMarquee';
+import SocietyFooter from '@/components/SocietyFooter';
 
-export default function Home() {
+export default async function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
+    <main className={styles.main}>
+      {/* Dynamic background handled globally in globals.css */}
+
+      <section className={`${styles.hero} animate-fade-in`}>
+        <h1 className={styles.title}>
+          Empowering Communities <br />
+          <span className="gradient-text">Together</span>
+        </h1>
+        <p className={styles.subtitle}>
+          Join our society management platform to volunteer for sevas, participate in programs, and build a stronger community.
+        </p>
+        
+        <div className={styles.ctaGroup}>
+          <Link href="/programs">
+            <button className={styles.primaryBtn}>
+              Explore Programs <ArrowRight size={18} style={{ display: 'inline', marginLeft: '8px' }} />
+            </button>
+          </Link>
+          <Link href="/auth/login">
+            <button className={styles.secondaryBtn}>
+              Join as Volunteer
+            </button>
+          </Link>
+        </div>
+      </section>
+
+      <section className={styles.featuresGrid}>
+        <div className={`${styles.featureCard} glass-panel animate-fade-in`} style={{ animationDelay: '0.1s' }}>
+          <div className={styles.featureIcon}>
+            <HeartHandshake size={24} />
+          </div>
+          <h3>Volunteer for Sevas</h3>
           <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+            Browse real-time listings of community tasks and sevas. Step up and make a difference where it's needed most.
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className={`${styles.featureCard} glass-panel animate-fade-in`} style={{ animationDelay: '0.2s' }}>
+          <div className={styles.featureIcon}>
+            <CalendarClock size={24} />
+          </div>
+          <h3>Upcoming Programs</h3>
+          <p>
+            Stay updated with the latest events, workshops, and society gatherings. Never miss an opportunity to connect.
+          </p>
         </div>
-      </main>
-    </div>
+
+        <div className={`${styles.featureCard} glass-panel animate-fade-in`} style={{ animationDelay: '0.3s' }}>
+          <div className={styles.featureIcon}>
+            <Users size={24} />
+          </div>
+          <h3>Member Dashboard</h3>
+          <p>
+            Access a personalized dashboard to track your contributions, request assistance, and interact with the community.
+          </p>
+        </div>
+      </section>
+
+      <FoundingMembersMarquee />
+      <SocietyFooter />
+    </main>
   );
 }
