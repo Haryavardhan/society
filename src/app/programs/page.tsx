@@ -3,27 +3,27 @@ import styles from './page.module.css';
 import FoundingMembersMarquee from '@/components/FoundingMembersMarquee';
 import SocietyFooter from '@/components/SocietyFooter';
 
-// Mock data (we can replace this with Prisma DB calls later)
+// Real program data updated for production
 const programs = [
   {
     id: 1,
-    title: 'Community Food Drive',
-    description: 'Help us distribute food to those in need. We are targeting to serve 500 families in the upcoming weekend.',
-    date: '2026-06-15',
-    participants: 45
+    title: 'Event 1: Annual Community Outreach',
+    description: 'Our first major community outreach program focused on establishing connections and identifying key areas of need within the society.',
+    date: '2023-11-05',
+    participants: 50
   },
   {
-    id: 2,
-    title: 'River Cleanup Drive',
-    description: 'Join hands to clean up the local riverbed. Equipment will be provided. A small step for a greener future.',
-    date: '2026-06-22',
-    participants: 120
+    id: 4,
+    title: 'Event 4: Clothes Distribution Drive',
+    description: 'Mishaye Pupil Society organized a massive clothes distribution drive to support underprivileged families, ensuring warmth and dignity for all.',
+    date: '2025-02-14',
+    participants: 140
   },
   {
-    id: 3,
-    title: 'Free Health Checkup Camp',
-    description: 'Organizing a free health checkup camp for the elderly members of our society in collaboration with City Hospital.',
-    date: '2026-07-05',
+    id: 9,
+    title: 'Event 9: School Support Program',
+    description: 'A comprehensive educational initiative providing stationery, books, and essential resources to students in Chirala to empower their learning journey.',
+    date: '2026-03-05',
     participants: 200
   }
 ];
